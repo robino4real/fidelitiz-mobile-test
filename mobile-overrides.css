@@ -2,6 +2,9 @@
 .scheduled-empty { margin: 16px 0 0; padding: 16px; border: 1px dashed #cfc2ad; border-radius: 12px; color: #6d6255; font-size: 13px; line-height: 1.4; }
 @media (max-width: 760px) {
   html, body, #root { max-width: 100%; overflow-x: clip; }
+  /* Keep the iPhone home-indicator area covered while Safari changes its viewport height. */
+  .dashboard-bottom-nav { position: fixed; right: 0; bottom: 0; left: 0; width: 100%; margin: 0; background: var(--cream); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .dashboard-bottom-nav::after { position: absolute; top: 100%; right: 0; left: 0; height: calc(48px + env(safe-area-inset-bottom)); background: var(--cream); content: ''; pointer-events: none; }
   .dashboard-main, .dashboard-view, .campaign-layout, .campaign-composer, .campaign-side { min-width: 0; max-width: 100%; }
   .dashboard-main:not(:has(.pro-overview)) > .mobile-test-links { display: none; }
   .dashboard-main:has(.pro-overview) > .mobile-test-links {
@@ -47,9 +50,13 @@
   .add-store > span { margin-bottom: 9px; }
   .settings-section { padding: 25px 0 32px; gap: 18px; }
   .campaign-composer { padding: 22px 18px; transform: none; border: 1px solid #e5dccc; border-radius: 16px; box-shadow: 0 8px 25px #291b1112; }
-  .campaign-layout { gap: 32px; }
-  .campaign-composer label, .campaign-composer .inline-fields, .campaign-composer .notification-mode { min-width: 0; }
-  .campaign-composer input:not([type='checkbox']), .campaign-composer select, .campaign-composer textarea { min-width: 0; max-width: 100%; font-size: 16px; }
+  .campaign-layout { grid-template-columns: minmax(0, 1fr); width: 100%; gap: 32px; }
+  .campaign-composer, .campaign-side, .push-preview, .scheduled-pushes { box-sizing: border-box; width: 100%; min-width: 0; }
+  .campaign-composer label, .campaign-composer .inline-fields, .campaign-composer .notification-mode { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+  .campaign-composer .inline-fields, .campaign-composer .notification-mode { grid-template-columns: minmax(0, 1fr); }
+  .campaign-composer .notification-mode button { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+  .campaign-composer input:not([type='checkbox']), .campaign-composer select, .campaign-composer textarea { display: block; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; font-size: 16px; }
+  .campaign-composer select { text-overflow: ellipsis; }
   .campaign-composer .switch-row { display: grid; grid-template-columns: minmax(0,1fr) 48px; align-items: center; gap: 12px; }
   .campaign-composer .switch-row > span { min-width: 0; }
   .campaign-composer .switch-row input[type='checkbox'] { width: 48px; height: 27px; margin: 0; padding: 0; }
@@ -57,8 +64,11 @@
   .wallet-push { grid-template-columns: 39px minmax(0,1fr); }
   .wallet-push > div { min-width: 0; }
   .wallet-push b, .wallet-push p, .scheduled-pushes article strong { overflow-wrap: anywhere; }
-  .scheduled-pushes article { grid-template-columns: minmax(0,1fr) auto; gap: 10px; }
+  .scheduled-pushes > header { flex-wrap: wrap; gap: 8px; }
+  .scheduled-pushes article { grid-template-columns: minmax(0,1fr); gap: 10px; }
   .scheduled-pushes article > div { min-width: 0; }
+  .scheduled-pushes article > div:last-child { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; text-align: left; }
+  .scheduled-pushes em { margin: 0; }
 }
 
 @media (max-width: 560px) {
