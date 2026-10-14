@@ -48,6 +48,7 @@ async function refresh() {
       const container = document.getElementById('notifications');
       const signature = delivered.map((item) => [item.id, item.title, item.body].join('|')).join('~');
       if (signature !== notificationSignature) {
+        const expanded = container.classList.contains('expanded') && delivered[0]?.id === lastNotificationId;
         container.replaceChildren();
         for (const item of delivered) {
           const card = document.createElement('a'); card.className = 'lock-notification'; card.href = './carte.html';
@@ -63,6 +64,17 @@ async function refresh() {
           const body = document.createElement('span'); body.className = 'notification-body'; body.textContent = item.body;
           content.append(head, title, body); card.append(icon, content); container.append(card);
         }
+        if (delivered.length > 1) {
+          const more = document.createElement('button');
+          more.type = 'button';
+          more.className = 'notification-expand';
+          const label = () => more.textContent = container.classList.contains('expanded') ? 'Réduire les notifications' : `${delivered.length - 1} autre${delivered.length > 2 ? 's' : ''} notification${delivered.length > 2 ? 's' : ''}`;
+          more.addEventListener('click', () => { container.classList.toggle('expanded'); more.setAttribute('aria-expanded', String(container.classList.contains('expanded'))); label(); });
+          container.insertBefore(more, container.children[1] || null);
+          container.classList.toggle('expanded', expanded);
+          more.setAttribute('aria-expanded', String(expanded));
+          label();
+        } else container.classList.remove('expanded');
         if (!firstNotifications && delivered[0] && delivered[0].id !== lastNotificationId) container.firstElementChild?.classList.add('new');
         notificationSignature = signature;
       }

@@ -65,6 +65,8 @@ body{overflow-x:hidden}
 .lock-notification strong,.lock-notification .notification-body{display:block;overflow-wrap:anywhere}
 .lock-notification strong{font-size:14px;line-height:1.2}
 .notification-body{font-size:13px;line-height:1.33}
+#notifications:not(.expanded) .lock-notification:not(:first-child){display:none}
+.notification-expand{display:block;margin:0 auto;padding:7px 13px;border:1px solid #ffffff80;border-radius:999px;background:#2422368a;color:#fff;font:500 11px -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;letter-spacing:.01em;-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);cursor:pointer}
 .lock-bottom{position:absolute;z-index:2;right:28px;bottom:calc(29px + env(safe-area-inset-bottom));left:28px}
 .lock-controls{display:flex;justify-content:space-between;align-items:center}
 .lock-control{display:grid;place-items:center;width:49px;height:49px;border-radius:50%;background:#29253891;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
