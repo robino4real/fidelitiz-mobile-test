@@ -53,7 +53,7 @@ body{overflow-x:hidden}
 .lock-symbol{width:18px;height:18px;margin-bottom:14px}
 .lock-time span{font-size:18px;font-weight:500;letter-spacing:-.025em}
 .lock-time strong{font-size:clamp(74px,22vw,91px);font-weight:250;line-height:1.04;letter-spacing:-.07em}
-.lock-notifications{position:relative;z-index:1;max-height:calc(100dvh - 390px);min-height:80px;overflow-y:auto;scrollbar-width:none;margin-top:clamp(55px,8vh,75px)}
+.lock-notifications{position:relative;z-index:1;max-height:max(120px,calc(100dvh - 525px));min-height:80px;overflow-y:auto;scrollbar-width:none;margin-top:clamp(55px,8vh,75px)}
 .lock-notifications::-webkit-scrollbar{display:none}
 .lock-notification{display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;width:100%;margin:0 0 8px;padding:12px;border:1px solid #fff5;border-radius:20px;background:#e8e9ebc9;color:#15161c;text-decoration:none;box-shadow:0 5px 22px #201b3030;-webkit-backdrop-filter:blur(28px) saturate(1.5);backdrop-filter:blur(28px) saturate(1.5)}
 .lock-notification.new{animation:notification-arrive .7s cubic-bezier(.17,.89,.31,1.2) both}
@@ -74,5 +74,5 @@ body{overflow-x:hidden}
 .lock-screen .home-indicator{background:#fff}
 
 @media(max-width:360px){.iphone{padding-right:12px;padding-left:12px}.wallet-nav{margin-bottom:4px}.pass-head{min-height:73px;padding:14px}.brand-logo{width:34px;height:34px;font-size:25px}.pass-details{padding:13px 14px 16px}.qr-panel{width:min(74%,225px);padding:9px 8px 7px}.lock-notifications{margin-top:42px}.lock-bottom{right:22px;left:22px}}
-@media(min-width:550px){.iphone{min-height:780px;max-height:850px;margin:24px auto;border-radius:42px;box-shadow:0 24px 75px #0006}.lock-notifications{max-height:390px}.lock-bottom{bottom:32px}}
+@media(min-width:550px){.iphone{min-height:780px;max-height:850px;margin:24px auto;border-radius:42px;box-shadow:0 24px 75px #0006}.lock-notifications{max-height:310px}.lock-bottom{bottom:32px}}
 @media(prefers-reduced-motion:reduce){.pass,.lock-notification.new,.points.updated b{animation:none}}
