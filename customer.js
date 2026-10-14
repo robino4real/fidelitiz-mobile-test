@@ -84,4 +84,21 @@ async function refresh() {
   } catch { sync.textContent = 'Connexion interrompue · nouvelle tentative automatique'; }
   finally { running = false; }
 }
-updateClock(); refresh(); setInterval(updateClock, 15000); setInterval(refresh, 2000); document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+async function start() {
+  updateClock();
+  if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+    sync.textContent = 'Réinitialisation de la démo…';
+    try { await request('resetActivity'); }
+    catch {
+      sync.textContent = 'Réinitialisation impossible. Rechargez la page.';
+      sync.classList.remove('sr-only');
+      sync.classList.add('sync-error');
+      return;
+    }
+  }
+  await refresh();
+  setInterval(updateClock, 15000);
+  setInterval(refresh, 2000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+}
+void start();
