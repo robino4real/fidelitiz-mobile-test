@@ -1,6 +1,8 @@
 /* The public test should read as a working merchant app on a phone. */
 .scheduled-empty { margin: 16px 0 0; padding: 16px; border: 1px dashed #cfc2ad; border-radius: 12px; color: #6d6255; font-size: 13px; line-height: 1.4; }
 @media (max-width: 760px) {
+  html, body, #root { max-width: 100%; overflow-x: clip; }
+  .dashboard-main, .dashboard-view, .campaign-layout, .campaign-composer, .campaign-side { min-width: 0; max-width: 100%; }
   .dashboard-main:not(:has(.pro-overview)) > .mobile-test-links { display: none; }
   .dashboard-main:has(.pro-overview) > .mobile-test-links {
     display: grid;
@@ -44,11 +46,26 @@
   .add-store { min-height: 155px; }
   .add-store > span { margin-bottom: 9px; }
   .settings-section { padding: 25px 0 32px; gap: 18px; }
-  .campaign-composer { padding: 22px 18px; }
-  .campaign-layout { gap: 25px; }
+  .campaign-composer { padding: 22px 18px; transform: none; border: 1px solid #e5dccc; border-radius: 16px; box-shadow: 0 8px 25px #291b1112; }
+  .campaign-layout { gap: 32px; }
+  .campaign-composer label, .campaign-composer .inline-fields, .campaign-composer .notification-mode { min-width: 0; }
+  .campaign-composer input:not([type='checkbox']), .campaign-composer select, .campaign-composer textarea { min-width: 0; max-width: 100%; font-size: 16px; }
+  .campaign-composer .switch-row { display: grid; grid-template-columns: minmax(0,1fr) 48px; align-items: center; gap: 12px; }
+  .campaign-composer .switch-row > span { min-width: 0; }
+  .campaign-composer .switch-row input[type='checkbox'] { width: 48px; height: 27px; margin: 0; padding: 0; }
+  .campaign-composer .wallet-channels input[type='checkbox'] { width: 15px; height: 15px; flex: none; margin: 0; padding: 0; }
+  .wallet-push { grid-template-columns: 39px minmax(0,1fr); }
+  .wallet-push > div { min-width: 0; }
+  .wallet-push b, .wallet-push p, .scheduled-pushes article strong { overflow-wrap: anywhere; }
+  .scheduled-pushes article { grid-template-columns: minmax(0,1fr) auto; gap: 10px; }
+  .scheduled-pushes article > div { min-width: 0; }
 }
 
 @media (max-width: 560px) {
+  .campaign-composer .switch-row { padding: 16px 0; }
+  .campaign-composer .switch-row small { font-size: 11px; line-height: 1.35; }
+  .campaign-composer .button { max-width: 100%; white-space: normal; }
+  .phone-lockscreen { max-width: 100%; transform: none; border-radius: 30px; box-shadow: 0 8px 28px #291b1129; }
   .cx-merchant-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; padding: 0 8px; overflow: visible; }
   .cx-merchant-nav button { display: grid; min-height: 58px; align-items: center; padding: 8px 3px; font-size: 11px; line-height: 1.15; text-align: center; white-space: normal; }
   /* NFC supports are actionable cards on a phone, instead of a clipped table. */
